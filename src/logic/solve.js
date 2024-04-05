@@ -545,9 +545,9 @@ export function Solve({ oldState }) {
             //     // }
             
             // }
-            return(
-                <p> colors is : {colors}</p>
-            )
+            // return(
+            //     // <p> colors is : {colors}</p>
+            // )
         
       }
       const { graph, events } = state;

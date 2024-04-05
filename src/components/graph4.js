@@ -162,7 +162,7 @@ export const Copied = () => {
                 <>
                     <div className='App'>
                     <>
-                    <h2>Add Edge !</h2>
+                    {/* <h2>Add Edge !</h2> */}
                     <form onSubmit={addEdge}>
                         <label>Node 1:
                         <input 
@@ -185,7 +185,7 @@ export const Copied = () => {
                     </>
                 {/* <p> this is a paragraf</p> */}
                 {/* <p> num of nodes is {nodeCounter}</p> */}
-                <button type="button" onClick={createNode}> add node </button>
+                <button type="button" onClick={createNode}> Add Node </button>
                 <p></p>
                 <button type="button" onClick={solve}> Solve </button>
                     </div>
