@@ -4,7 +4,7 @@ import { options } from "../components/graph4";
 
 let old_state = {}
 let start_variables = []
-let neighbours = [[]]
+let neighbours = []
 
 let colors = 1
 let real_colors = Infinity
@@ -49,19 +49,36 @@ function set_neighbours(){
 
 
 export function test_function(){
-    // console.log("from test_func : state = ", state)
-    // const[state, setState] = useState(start_variables)
-    // let new_State = state
-    // console.log("From test_function start_variables=  ", start_variables)
-    // console.log("From test_function() start_variables[0]=  ", start_variables[0])
-    // console.log("From test_function() before start_variables=  ", start_variables)
-    // minimum_remaining_variable(start_variables)
-    start_variables = [[null, [2]], [1, [1, 2]], [2, [1, 2]], [1, [1, 2]]]
-    neighbours = [[2, 4], [1, 3], [2, 4], [3, 1]]
-    return (least_constraining_value(start_variables))
-    // console.log("From test_function() after start_variables=  ", start_variables)
+/*
+    //  minimum_remaining_variable test //
+
+    neighbours = [[1, 3], [0, 2], [1, 3], [2, 0]]
+    let state =  [[null, [2]], [null, [1]], [null, [2]], [0, [1]]]
+    // indexes =  [2, 1, 0]
+    return(minimum_remaining_variable(state))
+*/
+
+/*
+    // least_constraining_value test //
+
+    let state = [[null, [2]], [1, [1, 2]], [2, [1, 2]], [1, [1, 2]]]
+    neighbours = [[1, 3], [0, 2], [1, 3], [2, 0]]
+    // sorted_vals =  {1: [None, [2]], 2: [1, [1, 2]], 3: [2, [1, 2]], 4: [1, [1, 2]]}
+    return (least_constraining_value(state))
+*/
+
+/*
+    // arc_consistency test //
+
+    let variables =  [[null, [1, 2]], [null, [1, 2]], [null, [1, 2]], [1, [0, 2]]]
+    colors =  2
+    neighbours =  [[1, 3], [0, 2], [1, 3], [2, 0]]
+    console.log("variables from test_func = ", variables)
+    return(arc_consistency(variables))
+*/
+
 }
-function minimum_remaining_variable( [...state] ){
+function minimum_remaining_variable( state ){
     let indexes = []
     let flag = []
     for(let i = 0; i < state.length + 1; i++){
@@ -96,7 +113,7 @@ function minimum_remaining_variable( [...state] ){
     // console.log("From minimum_remaining_variale() state.length() =  ", state.length)
     
 }
-function least_constraining_value( ...state ){
+function least_constraining_value( state ){
     let sorted_vals = state.slice()
     for(let s1 = 0; s1 < state.length; s1++){
         if(state[s1][0] !== null){
@@ -130,15 +147,6 @@ function least_constraining_value( ...state ){
                     minimum = counter
                     val = value
                 }
-/*
-                for neighbour in neighbours[s1]:
-                    if state[neighbour][0] is not None:
-                        continue
-                if counter < minimum:
-                    minimum = counter
-                    val = value
-                
-*/
             }
             new_values.push(val)
             flag[val] = -1
@@ -148,7 +156,8 @@ function least_constraining_value( ...state ){
     }
     return sorted_vals
 }
-function arc_consistency(...variables){
+function arc_consistency(variables){
+    console.log("variables from arc = ", variables)
     let new_variables = variables.slice()
     let to_append = []
     for(let i = 0; i < colors; i++){
@@ -163,6 +172,7 @@ function arc_consistency(...variables){
             continue
         }
         for(let s2 of neighbours[s1]){
+            // console.log("s1 = ",s1, "\ns2 = ", s2, "\nnew_variables[s2] = ", new_variables)
             if(s1 === s2 || new_variables[s2][0] !== null){
                 continue
             }
@@ -172,14 +182,14 @@ function arc_consistency(...variables){
             }
         }
     }
-    let queue = [[]]
-    let popped = [[]]
+    let queue = []
+    let popped = []
     for(let s1 = 0; s1 < new_variables.length; s1++){
         if(new_variables[s1][0] !== null){
             continue
         }
         for(let s2 of neighbours[s1]){
-            if(s1 === s2 || new_variables[s2][0] != null){
+            if(s1 === s2 || new_variables[s2][0] !== null){
                 continue
             }
             let flag1 = true
@@ -234,68 +244,66 @@ function arc_consistency(...variables){
     }
     return new_variables
 }
-/*
-    while len(queue) > 0:
-        arc = queue[0]
-        if remove_inconsistent_values(arc, new_variables):
-            for neighbour in neighbours[queue[0][0]]:
-                if [neighbour, queue[0][0]] not in queue and [neighbour, queue[0][0]] not in popped:
-                    if neighbour != queue[0][0]:
-                        queue.append([neighbour, queue[0][0]])
-            popped.append(queue.pop(0))
-        else:
-            return None
-    return new_variables
-*/
 function remove_inconsistent_values(arc, variables){
-
+    for(let value1 of variables[arc[0]][1]){
+        let flag = false
+        for(let value2 of variables[arc[1]][1]){
+            if(value1 !== value2){
+                flag = true
+                break
+            }
+        }
+        if(!flag){
+            let found_index = variables[arc[0]][1].indexOf(value1)
+            if(found_index > -1){
+                variables[arc[0]][1].splice(found_index, 1)
+            }
+        }
+    }
+    for(let s = 0; s < variables.length; s++){
+        if(variables[s][0] !== null){
+            continue
+        }
+        if(variables[s][1].length === 0){   // couldn't remove inconsistency
+            return false
+        }
+    }
+    return true
 }
 
 /*
-def arc_consistency(variables):
-    new_variables = variables.copy()
+    for s in variables:
+        if variables[s][0] is not None:
+            continue
+        if len(variables[s][1]) == 0:  # couldn't remove inconsistency
+            return False
+
+    return True
+*/
+
+/*
+def remove_inconsistent_values(arc, variables):
     #################################################################
     # (Point: 15% of total score)                                   #
-    # This function returns variables with consistent values.       #
+    # This function returns false                                   #
+    # if an inconsistency is found and true otherwise.              #
     #################################################################
-    ###
-    to_append = []
-    for i in range(colors):
-        to_append.append(i + 1)
-    for s in variables:
-        variables[s][1].clear()
-        variables[s][1] = to_append.copy()
-    ###
-    for s1 in new_variables:  # s1 has a value
-        if new_variables[s1][0] is None:
-            continue
-        for s2 in neighbours[s1]:  # s2 doesn't have a value
-            if s1 == s2 or new_variables[s2][0] is not None:
-                continue
-            if new_variables[s1][0] in new_variables[s2][1]:
-                new_variables[s2][1].remove(new_variables[s1][0])
-    queue = []
-    popped = []
-    for s1 in new_variables:
-        if new_variables[s1][0] is not None:
-            continue
-        for s2 in neighbours[s1]:
-            if s1 == s2 or new_variables[s2][0] is not None:
-                continue
-            if [s1, s2] not in queue and [s1, s2] not in popped:
-                queue.append([s1, s2])
+    for value1 in variables[arc[0]][1]:
+        flag = False
+        for value2 in variables[arc[1]][1]:
+            if value1 != value2:
+                flag = True
+                break
+        if not flag:
+            variables[arc[0]][1].remove(value1)
 
-    while len(queue) > 0:
-        arc = queue[0]
-        if remove_inconsistent_values(arc, new_variables):
-            for neighbour in neighbours[queue[0][0]]:
-                if [neighbour, queue[0][0]] not in queue and [neighbour, queue[0][0]] not in popped:
-                    if neighbour != queue[0][0]:
-                        queue.append([neighbour, queue[0][0]])
-            popped.append(queue.pop(0))
-        else:
-            return None
-    return new_variables
+    for s in variables:
+        if variables[s][0] is not None:
+            continue
+        if len(variables[s][1]) == 0:  # couldn't remove inconsistency
+            return False
+
+    return True
 */
 function another_test_function( [...state] ){
     console.log("From another_test_function() state=  ", state)
