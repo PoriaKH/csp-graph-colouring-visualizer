@@ -1,6 +1,13 @@
 # csp-graph-coloring-visualizer
-solving and visualizing the graph-coloring-problem using React and AI
+In this project i tried to solve and visualize the famous constraint satisfaction graph coloring problem by using React and artificial intelligence.
 
+
+### Usage
+After opening the the [visualizer](https://poriakh.github.io/csp-graph-colouring-visualizer/). you'll be able to create your own graph.
+Use `Add Node` to add another node to your graph.(you can also double click on the screen to create another node).
+`Add Edge` to add another edge to your graph.
+
+after creating your graph click on `Solve` to see the magic. hope you enjoy :)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
