@@ -109,8 +109,6 @@ function minimum_remaining_variable( state ){
     }
     console.log("indexes = ", indexes)
     return indexes
-    // console.log("From minimum_remaining_variale() state =  ", state)
-    // console.log("From minimum_remaining_variale() state.length() =  ", state.length)
     
 }
 function least_constraining_value( state ){
@@ -157,7 +155,6 @@ function least_constraining_value( state ){
     return sorted_vals
 }
 function arc_consistency(variables){
-    console.log("variables from arc = ", variables)
     let new_variables = variables.slice()
     let to_append = []
     for(let i = 0; i < colors; i++){
@@ -271,39 +268,44 @@ function remove_inconsistent_values(arc, variables){
     return true
 }
 
+// Function to call the backtracking search
+function backtrack(){
+    let state = start_variables.slice()
+    let res = backtrack_search(state)
+    while(res === null){
+        colors = colors + 1
+        res = backtrack_search(state)
+    }
+    return res
+}
 /*
-    for s in variables:
-        if variables[s][0] is not None:
-            continue
-        if len(variables[s][1]) == 0:  # couldn't remove inconsistency
-            return False
-
-    return True
+    state = start_variables.copy()
+    res = backtrack_search(state)
+    while res is None:
+        colors = colors + 1
+        if colors > real_colors:
+            return None
+        res = backtrack_search(state)
+    return res
 */
 
 /*
-def remove_inconsistent_values(arc, variables):
+def backtrack(filename, report=True):
+    global colors
+    fileReader(filename)
     #################################################################
-    # (Point: 15% of total score)                                   #
-    # This function returns false                                   #
-    # if an inconsistency is found and true otherwise.              #
+    # (Point: 35% of total score)                                   #
+    # This function returns a solution if there is a complete       #
+    # assignment or failure if there is not                         #
     #################################################################
-    for value1 in variables[arc[0]][1]:
-        flag = False
-        for value2 in variables[arc[1]][1]:
-            if value1 != value2:
-                flag = True
-                break
-        if not flag:
-            variables[arc[0]][1].remove(value1)
-
-    for s in variables:
-        if variables[s][0] is not None:
-            continue
-        if len(variables[s][1]) == 0:  # couldn't remove inconsistency
-            return False
-
-    return True
+    state = start_variables.copy()
+    res = backtrack_search(state)
+    while res is None:
+        colors = colors + 1
+        if colors > real_colors:
+            return None
+        res = backtrack_search(state)
+    return res
 */
 function another_test_function( [...state] ){
     console.log("From another_test_function() state=  ", state)
