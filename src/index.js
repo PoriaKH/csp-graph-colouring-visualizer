@@ -159,10 +159,11 @@ let sorted_vals = test_function()
 console.log("sorted_vals = ", sorted_vals)
 */
 
-console.log(test_function())
+// console.log(test_function())
 
-// root.render(<Copied />)
+root.render(<Copied />)
 // temp_func();
+// test_function()
 
 
 

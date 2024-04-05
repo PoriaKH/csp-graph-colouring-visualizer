@@ -1,6 +1,14 @@
 .App {
   text-align: center;
 }
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
 .App-logo {
   height: 40vmin;

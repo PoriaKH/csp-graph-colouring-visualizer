@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { edges, nodes } from './data';
 import { Solve  } from '../logic/solve';
+
 // const options = {
 //   layout: {
 //     hierarchical: false
@@ -68,7 +69,7 @@ export const Copied = () => {
         }
         const color = randomColor();
         setState(({ graph: { nodes, edges }, counter, ...rest }) => {
-          const id = counter + 1;
+          const id = counter;
           const from = Math.floor(Math.random() * (counter - 1)) + 1;
           return {
             graph: {
@@ -82,26 +83,29 @@ export const Copied = () => {
                 //{ from, to: id }
               ]
             },
-            counter: id,
+            counter: id + 1,
             ...rest
           }
         });
       }
       const [state, setState] = useState({
-        counter: 4,
+        counter: 5,
         graph: {
           nodes: [
-            { id: 0, label: "Node 0", color: "#e04141" },
-            { id: 1, label: "Node 1", color: "#e09c41" },
-            { id: 2, label: "Node 2", color: "#e0df41" },
-            { id: 3, label: "Node 3", color: "#7be041" },
-            // { id: 4, label: "Node 4", color: "#41e0c9" }
+            { id: 0, label: "Node 0", color: "#e04141", shape: "circle" },
+            { id: 1, label: "Node 1", color: "#e09c41", shape: "circle"},
+            { id: 2, label: "Node 2", color: "#e0df41", shape: "circle"},
+            { id: 3, label: "Node 3", color: "#7be041", shape: "circle"},
+            { id: 4, label: "Node 4", color: "#41e0c9", shape: "circle"}
           ],
           edges: [
             { from: 0, to: 1 },
+            { from: 0, to: 2 },
             { from: 1, to: 2 },
             { from: 2, to: 3 },
-            { from: 3, to: 0 }
+            { from: 3, to: 0 },
+            { from: 3, to: 1 },
+            { from: 4, to: 0}
           ]
         },
         events: {
@@ -153,7 +157,7 @@ export const Copied = () => {
             // Solve( state );
         }
       const { graph, events } = state;
-        if (isSolve == false) {
+        if (!isSolve) {
             return (
                 <>
                     <div className='App'>
@@ -176,12 +180,13 @@ export const Copied = () => {
                             onChange={handleChangeEdge}
                             />
                             </label>
-                        <input type="submit" />‍‍
+                        <input type="submit" value = "Add-Edge" />‍‍
                     </form>
                     </>
-                <p> this is a paragraf</p>
+                {/* <p> this is a paragraf</p> */}
                 {/* <p> num of nodes is {nodeCounter}</p> */}
                 <button type="button" onClick={createNode}> add node </button>
+                <p></p>
                 <button type="button" onClick={solve}> Solve </button>
                     </div>
                     <div>

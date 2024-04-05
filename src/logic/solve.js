@@ -11,33 +11,23 @@ let real_colors = Infinity
 
 let isSolved = false
 
-// state.push([null, [1, 2, 3]])
-// state.pop(0)
 
 function set_start_variables(){
+    start_variables = []
     for(let node of old_state.graph.nodes){
         let color_array = []
         for (let color = 0; color < colors; color++){
             color_array.push(color + 1)
         }
-        console.log("node = ", node)
         start_variables.push([null, color_array])
     }
-    // // temp
-    // start_variables[3][1].push(555)
-    // // 
-    console.log("old_stateeeee = ", old_state)
-    console.log("start_variables = ", start_variables)
 }
 
 function set_neighbours(){
     for (let node of old_state.graph.nodes){
-        console.log("node = ", node)
         neighbours.push([])
     }
-    console.log("neighbours = ", neighbours)
     for (let edge of old_state.graph.edges){
-        console.log("edge = ", edge)
         if(!neighbours[edge.from].includes(edge.to)){
             neighbours[edge.from].push(edge.to);
         }
@@ -77,6 +67,124 @@ export function test_function(){
     return(arc_consistency(variables))
 */
 
+
+    // backtrack_search test//
+
+// test 1:
+    // start_variables =  [[null, [1, 2, 3]], [null, [1, 2, 3]], [null, [1, 2, 3]], [null, [1, 2, 3]]]
+    // neighbours =  [[1, 3], [0, 2], [1, 3], [2, 0]]
+    // colors =  1
+    // // res =  {0: [2, [1, 2]], 1: [1, [1, 2]], 2: [2, [1, 2]], 3: [1, [1, 2]]}
+    // return(backtrack())
+
+// test 2:
+    // start_variables =  [[null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]]]
+    // neighbours =  [[1, 2, 3, 4], [0, 2, 3, 5, 6], [0, 1, 4, 5, 6], [0, 1, 4, 5, 6], [0, 2, 3, 5, 6], [1, 2, 3, 4, 6], [1, 2, 3, 4, 5]]
+    // colors =  1
+    // res =  {1: [1, [1, 2, 3, 4]], 2: [3, [1, 2, 3, 4]], 3: [4, [1, 2, 3, 4]], 4: [4, [1, 2, 3, 4]], 5: [3, [1, 2, 3, 4]], 6: [2, [1, 2, 3, 4]], 7: [1, [1, 2, 3, 4]]}
+    // return(backtrack())
+    /*
+    start_variables =  {1: [None, [1, 2, 3, 4]], 2: [None, [1, 2, 3, 4]], 3: [None, [1, 2, 3, 4]], 4: [None, [1, 2, 3, 4]], 5: [None, [1, 2, 3, 4]], 6: [None, [1, 2, 3, 4]], 7: [None, [1, 2, 3, 4]]}
+    neighbours =  {1: [2, 3, 4, 5], 2: [1, 3, 4, 6, 7], 3: [1, 2, 5, 6, 7], 4: [1, 2, 5, 6, 7], 5: [1, 3, 4, 6, 7], 6: [2, 3, 4, 5, 7], 7: [2, 3, 4, 5, 6]}
+    colors =  1
+    res =  {1: [1, [1, 2, 3, 4]], 2: [3, [1, 2, 3, 4]], 3: [4, [1, 2, 3, 4]], 4: [4, [1, 2, 3, 4]], 5: [3, [1, 2, 3, 4]], 6: [2, [1, 2, 3, 4]], 7: [1, [1, 2, 3, 4]]}
+    */
+
+//  test 3:         minimum_remaining_variable -----> Tik
+/*
+    console.log("in testFunc:\n")
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    let state =  [[2, [1, 2, 3]], [null, [1, 3]], [null, [1, 3]], [null, [1, 3]], [1, [1, 2, 3]]]
+    // indexes =  [3, 2, 1]
+
+    let result = minimum_remaining_variable(state)
+    console.log("result = ", result)
+*/
+
+// test 4 :         least_constraining_value
+/*
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    let state =  [[2, [1, 2, 3, 4]], [null, [4]], [3, [1, 2, 3, 4]], [1, [1, 2, 3, 4]], [1, [1, 2, 3, 4]]]
+    // sorted_vals =  {0: [2, [1, 2, 3, 4]], 1: [None, [4]], 2: [3, [1, 2, 3, 4]], 3: [1, [1, 2, 3, 4]], 4: [1, [1, 2, 3, 4]]}
+    let result = least_constraining_value(state)
+    console.log("result = ", result)
+*/
+
+// test 5 :     arc_consistency
+/*
+    let variables =  [[null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]]]
+    colors =  1
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    // null
+    let result = arc_consistency(variables)
+    console.log("result = ", result)
+*/
+// test 6 :     arc_consistency
+/*
+    let variables =  [[2, [2, 3]], [null, [1, 2, 3]], [null, [1, 2, 3]], [null, [1, 2, 3]], [1, [1, 2, 3]]]
+    colors =  3
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    // new_variables =  {0: [2, [1, 2, 3]], 1: [None, [1, 3]], 2: [None, [1, 3]], 3: [None, [1, 3]], 4: [1, [1, 2, 3]]}
+    let result = arc_consistency(variables)
+    console.log("result = ", result)
+*/
+
+// test 7 :     arc_consistency
+/*
+    let variables =  [[2, [2, 3]], [null, [1, 2, 3]], [null, [1, 2, 3]], [null, [1, 2, 3]], [1, [1, 2, 3]]]
+    colors =  3
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    // new_variables =  {0: [2, [1, 2, 3]], 1: [None, [1, 3]], 2: [None, [1, 3]], 3: [None, [1, 3]], 4: [1, [1, 2, 3]]}
+    let result = arc_consistency(variables)
+    console.log("result = ", result)
+*/
+
+// backtrack test//
+/*
+    start_variables =  [[null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]]]
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    colors =  1
+    // res =  {0: [2, [1, 2, 3, 4]], 1: [4, [1, 2, 3, 4]], 2: [3, [1, 2, 3, 4]], 3: [1, [1, 2, 3, 4]], 4: [1, [1, 2, 3, 4]]}
+    let result = backtrack()
+    console.log("result[0   ] = ", result[0])
+*/
+// backtrack_search test //
+/*
+    start_variables =  [[null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]]]
+    let state = [[null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]]]
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    colors =  1
+    // res =  None
+    let result = backtrack_search(state)
+    console.log("result = ", result)
+*/
+// backtrack_search test  //
+/*
+    start_variables =  [[null, [2]], [null, [1]], [null, []], [null, [1, 2]], [1, [1, 2]]]
+    let state = [[null, [2]], [null, [1]], [null, []], [null, [1, 2]], [1, [1, 2]]]
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    colors =  4
+    // res =  None
+    let result = backtrack_search(state)
+    console.log("result = ", result)
+*/
+/*
+// arc_consistency test //
+    let variables =  [[2, [1, 2, 3]], [null, [1, 3]], [null, [1, 3]], [1, [1, 3]], [1, [1, 2, 3]]]
+    colors =  3
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3], [0, 1, 3], [0, 1, 2], [0]]
+    // null
+
+    let result = arc_consistency(variables)
+    console.log("result = ", result)
+*/
+
+    start_variables =  [[null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]]]
+    neighbours =  [[1, 2, 3, 4], [0, 2, 3, 5, 6], [0, 1, 4, 5, 6], [0, 1, 4, 5, 6], [0, 2, 3, 5, 6], [1, 2, 3, 4, 6], [1, 2, 3, 4, 5]]
+    colors =  1
+    // res =  {0: [1, [1, 2, 3, 4]], 1: [3, [1, 2, 3, 4]], 2: [4, [1, 2, 3, 4]], 3: [4, [1, 2, 3, 4]], 4: [3, [1, 2, 3, 4]], 5: [2, [1, 2, 3, 4]], 6: [1, [1, 2, 3, 4]]}
+    let result = backtrack()
+    console.log("result = ", result)
 }
 function minimum_remaining_variable( state ){
     let indexes = []
@@ -88,12 +196,10 @@ function minimum_remaining_variable( state ){
     for (let s1 = 0; s1 < state.length; s1++){
         let min = Infinity
         let index = -1
-        console.log("s1 = ", s1)
         for(let s2 = 0; s2 < state.length; s2++){
             if(flag[s2] === -1 || state[s2][0] !== null){
                 continue
             }
-            console.log("state[s2][1].length = ", state[s2][1].length)
             if(state[s2][1].length <= min){
                 min = state[s2][1].length
                 index = s2
@@ -107,7 +213,6 @@ function minimum_remaining_variable( state ){
             indexes.push(index)
         }
     }
-    console.log("indexes = ", indexes)
     return indexes
     
 }
@@ -169,7 +274,6 @@ function arc_consistency(variables){
             continue
         }
         for(let s2 of neighbours[s1]){
-            // console.log("s1 = ",s1, "\ns2 = ", s2, "\nnew_variables[s2] = ", new_variables)
             if(s1 === s2 || new_variables[s2][0] !== null){
                 continue
             }
@@ -274,11 +378,26 @@ function backtrack(){
     let res = backtrack_search(state)
     while(res === null){
         colors = colors + 1
+        set_start_variables()
+        state = start_variables.slice()
         res = backtrack_search(state)
+        for(let s1 = 0; res !== null && s1 < res.length; s1++ ){
+            let flag = false
+            for(let neighbour of neighbours[s1]){
+                if(res[s1][0] === res[neighbour][0]){
+                    flag = true
+                    break
+                }
+            }
+            if(flag){
+                res = null
+                break
+            }
+        }
     }
     return res
 }
-function backtrack_search(state){
+function backtrack_search([...state]){
     state = arc_consistency(state)
     if(state === null){
         return null
@@ -286,7 +405,6 @@ function backtrack_search(state){
     let indexes = minimum_remaining_variable(state)
     state = least_constraining_value(state)
     let new_state = state.slice()
-
     let flag = false
     for(let s = 0; s < new_state.length; s++){
         if(new_state[s][0] === null){
@@ -306,48 +424,6 @@ function backtrack_search(state){
         new_state = state.slice()
     }
     return null
-}
-/*
-    for value in new_state[indexes[0]][1]:
-        new_state[indexes[0]][0] = value
-        result = backtrack_search(new_state)
-        if result is not None:
-            return result
-        new_state = state.copy()
-    return None
-*/
-
-/*
-def backtrack_search(state):
-    state = arc_consistency(state)
-    if state is None:
-        return None
-    indexes = minimum_remaining_variable(state)
-    state = least_constraining_value(state)
-    new_state = state.copy()
-    #################################################################
-    # (Point: 5% of total score)                                    #
-    #  Just for start of your backtrack                             #
-    #################################################################
-    flag = False
-    for s in new_state:
-        if new_state[s][0] is None:
-            flag = True
-            break
-    if not flag:
-        return new_state
-
-    for value in new_state[indexes[0]][1]:
-        new_state[indexes[0]][0] = value
-        result = backtrack_search(new_state)
-        if result is not None:
-            return result
-        new_state = state.copy()
-    return None
-*/
-function another_test_function( [...state] ){
-    console.log("From another_test_function() state=  ", state)
-    state[1] = [null, [1000,2000,3000]]
 }
 
 export function Solve({ oldState }) {
@@ -398,7 +474,7 @@ export function Solve({ oldState }) {
         }
         setState(({ graph: { nodes, edges }, counter, ...rest }) => {
           const id = counter + 1;
-          console.log("id = ", id)
+        //   console.log("id = ", id)
           const from = Math.floor(Math.random() * (counter - 1)) + 1;
           return {
             graph: {
@@ -417,15 +493,38 @@ export function Solve({ oldState }) {
           }
         });
       }
-        const [showDelayedText, setShowDelayedText] =
-        useState(true);
+        const [showDelayedText, setShowDelayedText] = useState(true);
+        function randomColor() {
+            const red = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+            const green = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+            const blue = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+            return `#${red}${green}${blue}`;
+          }
         const Recursive = () => {
         // console.log("old_state = ", old_state)
         // minimum_remaining_variable()
         if(!isSolved){
+            // // 
+            // test_function()
+            // // 
             set_start_variables();
             set_neighbours();
-            test_function();
+            console.log("in isSolved:\n")
+            console.log("neighbours = ", neighbours, "\nstart_variables = ", start_variables)
+            let result = backtrack()
+            console.log("result = ", result, "\ngraph = ", graph)
+
+            let color_array = []
+            for(let i = 0; i < colors; i++){
+                color_array.push(randomColor())
+            }
+            // console.log("color_array = ", color_array)
+            for(let node of graph.nodes){
+                // console.log("node = ", node, "\ncolor_array[result[node.id][0] - 1] = ",color_array[result[node.id][0] - 1])
+                node.color = color_array[result[node.id][0] - 1]
+            }
+            // console.log("graph after = ", graph)
+            // console.log("colors = ", colors)
 
             isSolved = true
         }
@@ -447,7 +546,7 @@ export function Solve({ oldState }) {
             
             // }
             return(
-                <p> counter is : {state.counter}</p>
+                <p> colors is : {colors}</p>
             )
         
       }
@@ -464,7 +563,7 @@ export function Solve({ oldState }) {
                         options={options} 
                         events={events} 
                         style={{ height: "640px" }} />
-                    </div>
+            </div>
         </>
     )
 }
