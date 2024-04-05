@@ -148,45 +148,154 @@ function least_constraining_value( ...state ){
     }
     return sorted_vals
 }
+function arc_consistency(...variables){
+    let new_variables = variables.slice()
+    let to_append = []
+    for(let i = 0; i < colors; i++){
+        to_append.push(i + 1)
+    }
+    for(let s = 0; s < variables.length; s++){
+        variables[s][1] = []
+        variables[s][1] = to_append.slice()
+    }
+    for(let s1 = 0; s1 < new_variables.length; s1++){
+        if(new_variables[s1][0] === null){
+            continue
+        }
+        for(let s2 of neighbours[s1]){
+            if(s1 === s2 || new_variables[s2][0] !== null){
+                continue
+            }
+            let found_index = new_variables[s2][1].indexOf(new_variables[s1][0])
+            if(found_index > -1){
+                new_variables[s2][1].splice(found_index, 1)
+            }
+        }
+    }
+    let queue = [[]]
+    let popped = [[]]
+    for(let s1 = 0; s1 < new_variables.length; s1++){
+        if(new_variables[s1][0] !== null){
+            continue
+        }
+        for(let s2 of neighbours[s1]){
+            if(s1 === s2 || new_variables[s2][0] != null){
+                continue
+            }
+            let flag1 = true
+            let flag2 = true
+            for(let q of queue){
+                if(q[0] === s1 && q[1] === s2){
+                    flag1 = false
+                    break
+                }
+            }
+            for(let p of popped){
+                if(p[0] === s1 && p[1] === s2){
+                    flag2 = false
+                    break
+                }
+            }
+            if(flag1 && flag2){
+                queue.push([s1, s2])
+            }
+        }
+    }
+    while(queue.length > 0){
+        let arc = queue[0]
+        if(remove_inconsistent_values(arc, new_variables)){
+            for(let neighbour of neighbours[queue[0][0]]){
+                let flag1 = true
+                let flag2 = true
+                for(let q of queue){
+                    if(q[0] === neighbour && q[1] === queue[0][0]){
+                        flag1 = false
+                        break
+                    }
+                }
+                for(let p of popped){
+                    if(p[0] === neighbour && p[1] === queue[0][0]){
+                        flag2 = false
+                        break
+                    }
+                }
+                if(flag1 && flag2){
+                    if(neighbour !== queue[0][0]){
+                        queue.push([neighbour, queue[0][0]])
+                    }
+                }
+            }
+            popped.push(queue[0])
+            queue.splice(0, 1)
+        }
+        else{
+            return null
+        }
+    }
+    return new_variables
+}
 /*
-def least_constraining_value(state):
+    while len(queue) > 0:
+        arc = queue[0]
+        if remove_inconsistent_values(arc, new_variables):
+            for neighbour in neighbours[queue[0][0]]:
+                if [neighbour, queue[0][0]] not in queue and [neighbour, queue[0][0]] not in popped:
+                    if neighbour != queue[0][0]:
+                        queue.append([neighbour, queue[0][0]])
+            popped.append(queue.pop(0))
+        else:
+            return None
+    return new_variables
+*/
+function remove_inconsistent_values(arc, variables){
+
+}
+
+/*
+def arc_consistency(variables):
+    new_variables = variables.copy()
     #################################################################
     # (Point: 15% of total score)                                   #
-    # This function returns sorted values in ascending order        #
-    # based on the no of constraints and return the list.           #
+    # This function returns variables with consistent values.       #
     #################################################################
-    sorted_vals = state.copy()
-    for s1 in state:
-        if state[s1][0] is not None:
+    ###
+    to_append = []
+    for i in range(colors):
+        to_append.append(i + 1)
+    for s in variables:
+        variables[s][1].clear()
+        variables[s][1] = to_append.copy()
+    ###
+    for s1 in new_variables:  # s1 has a value
+        if new_variables[s1][0] is None:
             continue
-        new_values = []
-        flag = []
-        max = -1
-        for value in state[s1][1]:
-            if value > max:
-                max = value
-        for i in range(max + 1):
-            flag.append(1)
+        for s2 in neighbours[s1]:  # s2 doesn't have a value
+            if s1 == s2 or new_variables[s2][0] is not None:
+                continue
+            if new_variables[s1][0] in new_variables[s2][1]:
+                new_variables[s2][1].remove(new_variables[s1][0])
+    queue = []
+    popped = []
+    for s1 in new_variables:
+        if new_variables[s1][0] is not None:
+            continue
+        for s2 in neighbours[s1]:
+            if s1 == s2 or new_variables[s2][0] is not None:
+                continue
+            if [s1, s2] not in queue and [s1, s2] not in popped:
+                queue.append([s1, s2])
 
-        for val0 in state[s1][1]:
-            minimum = 9999999999
-            val = -1
-            for value in state[s1][1]:
-                if flag[value] == -1:
-                    continue
-                counter = 0
-
-                for neighbour in neighbours[s1]:
-                    if state[neighbour][0] is not None:
-                        continue
-                if counter < minimum:
-                    minimum = counter
-                    val = value
-            new_values.append(val)
-            flag[val] = -1
-        sorted_vals[s1][1].clear()
-        sorted_vals[s1][1] = new_values
-    return sorted_vals
+    while len(queue) > 0:
+        arc = queue[0]
+        if remove_inconsistent_values(arc, new_variables):
+            for neighbour in neighbours[queue[0][0]]:
+                if [neighbour, queue[0][0]] not in queue and [neighbour, queue[0][0]] not in popped:
+                    if neighbour != queue[0][0]:
+                        queue.append([neighbour, queue[0][0]])
+            popped.append(queue.pop(0))
+        else:
+            return None
+    return new_variables
 */
 function another_test_function( [...state] ){
     console.log("From another_test_function() state=  ", state)
