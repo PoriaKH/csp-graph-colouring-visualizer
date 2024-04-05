@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/csp-graph-colouring-visualizer/static/css/main.ad0f951c.css",
+    "main.js": "/csp-graph-colouring-visualizer/static/js/main.28f0ce42.js",
+    "static/media/logo.svg": "/csp-graph-colouring-visualizer/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/csp-graph-colouring-visualizer/index.html",
+    "main.ad0f951c.css.map": "/csp-graph-colouring-visualizer/static/css/main.ad0f951c.css.map",
+    "main.28f0ce42.js.map": "/csp-graph-colouring-visualizer/static/js/main.28f0ce42.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ad0f951c.css",
+    "static/js/main.28f0ce42.js"
+  ]
+}
