@@ -49,12 +49,16 @@ function set_neighbours(){
 
 
 export function test_function(){
+    // console.log("from test_func : state = ", state)
     // const[state, setState] = useState(start_variables)
     // let new_State = state
     // console.log("From test_function start_variables=  ", start_variables)
     // console.log("From test_function() start_variables[0]=  ", start_variables[0])
     // console.log("From test_function() before start_variables=  ", start_variables)
-    minimum_remaining_variable(start_variables)
+    // minimum_remaining_variable(start_variables)
+    start_variables = [[null, [2]], [1, [1, 2]], [2, [1, 2]], [1, [1, 2]]]
+    neighbours = [[2, 4], [1, 3], [2, 4], [3, 1]]
+    return (least_constraining_value(start_variables))
     // console.log("From test_function() after start_variables=  ", start_variables)
 }
 function minimum_remaining_variable( [...state] ){
@@ -92,8 +96,8 @@ function minimum_remaining_variable( [...state] ){
     // console.log("From minimum_remaining_variale() state.length() =  ", state.length)
     
 }
-function least_constraining_value( [...state] ){
-    let sorted_vals = state
+function least_constraining_value( ...state ){
+    let sorted_vals = state.slice()
     for(let s1 = 0; s1 < state.length; s1++){
         if(state[s1][0] !== null){
             continue
@@ -117,6 +121,15 @@ function least_constraining_value( [...state] ){
                     continue
                 }
                 let counter = 0
+                for(let neighbour of neighbours[s1]){
+                    if(state[neighbour][0] !== null){
+                        continue
+                    }
+                }
+                if(counter < minimum){
+                    minimum = counter
+                    val = value
+                }
 /*
                 for neighbour in neighbours[s1]:
                     if state[neighbour][0] is not None:
@@ -127,9 +140,13 @@ function least_constraining_value( [...state] ){
                 
 */
             }
+            new_values.push(val)
+            flag[val] = -1
         }
-
+        sorted_vals[s1][1] = []
+        sorted_vals[s1][1] = new_values
     }
+    return sorted_vals
 }
 /*
 def least_constraining_value(state):

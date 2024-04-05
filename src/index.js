@@ -147,6 +147,14 @@ function Submitted({ state }){
 //
 
 
+/*
+state =  {1: [None, [2]], 2: [1, [1, 2]], 3: [2, [1, 2]], 4: [1, [1, 2]]}
+neighbours =  {1: [2, 4], 2: [1, 3], 3: [2, 4], 4: [3, 1]}
+sorted_vals =  {1: [None, [2]], 2: [1, [1, 2]], 3: [2, [1, 2]], 4: [1, [1, 2]]}
+*/
+// let state = [[null, [2]], [1, [1, 2]], [2, [1, 2]], [1, [1, 2]]]
+// let sorted_vals = test_function()
+// console.log("sorted_vals = ", sorted_vals)
 root.render(<Copied />)
 
 
