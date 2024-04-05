@@ -3,11 +3,11 @@ In this project i tried to solve and visualize the famous constraint satisfactio
 
 
 ### Usage
-After opening the the [visualizer](https://poriakh.github.io/csp-graph-colouring-visualizer/). you'll be able to create your own graph.
-Use `Add Node` to add another node to your graph.(you can also double click on the screen to create another node).
-`Add Edge` to add another edge to your graph.
+After opening the the [visualizer](https://poriakh.github.io/csp-graph-colouring-visualizer/) you'll be able to create your own graph.<br/>
+Use `Add Node` to add another node to your graph.(you can also double click on the screen to create another node).<br/>
+`Add Edge` to add another edge to your graph.<br/>
 
-after creating your graph click on `Solve` to see the magic. hope you enjoy :)
+after creating your graph click on `Solve` to see the magic. hope you enjoy :)<br/>
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
