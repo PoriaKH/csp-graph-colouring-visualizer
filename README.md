@@ -7,9 +7,11 @@ After opening the the [visualizer](https://poriakh.github.io/csp-graph-colouring
 Use `Add Node` to add another node to your graph.(you can also double click on the screen to create another node).<br/>
 `Add Edge` to add another edge to your graph.<br/>
 
-after creating your graph click on `Solve` to see the magic. hope you enjoy :)<br/>
+after creating your graph click on `Solve` to see the magic.
 
+The project is still in progress so there may be some bugs present that need to be addressed.<br>
 
+hope you enjoy :)<br/>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
