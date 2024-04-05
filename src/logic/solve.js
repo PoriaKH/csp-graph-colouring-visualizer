@@ -23,9 +23,9 @@ function set_start_variables(){
         console.log("node = ", node)
         start_variables.push([null, color_array])
     }
-    // temp
-    start_variables[0][1].push(555)
-    // 
+    // // temp
+    // start_variables[3][1].push(555)
+    // // 
     console.log("old_stateeeee = ", old_state)
     console.log("start_variables = ", start_variables)
 }
@@ -58,18 +58,8 @@ export function test_function(){
     // console.log("From test_function() after start_variables=  ", start_variables)
 }
 function minimum_remaining_variable( [...state] ){
-    // state.pop(0)
-    // console.log("old_state = ", old_state)
-    // return null
     let indexes = []
     let flag = []
-    // console.log("state.length = ", state.length)
-    // console.log("start_variables before = ", start_variables)
-    // console.log("state before = ", state)
-    // state[0] = [null, [10, 20, 30]]
-    // console.log("start_variables after = ", start_variables)
-    // console.log("state after = ", state)
-    // console.log("state[0][1][0] = ", state[0][1][0])
     for(let i = 0; i < state.length + 1; i++){
         flag.push(1);
     }
@@ -102,37 +92,90 @@ function minimum_remaining_variable( [...state] ){
     // console.log("From minimum_remaining_variale() state.length() =  ", state.length)
     
 }
-function another_test_function( [...state] ){
-    console.log("From another_test_function() state=  ", state)
-    state[1] = [null, [1000,2000,3000]]
+function least_constraining_value( [...state] ){
+    let sorted_vals = state
+    for(let s1 = 0; s1 < state.length; s1++){
+        if(state[s1][0] !== null){
+            continue
+        }
+        let new_values = []
+        let flag = []
+        let max = -1
+        for(let value of state[s1][1]){
+            if(value > max){
+                max = value
+            }
+        }
+        for(let i = 0; i < max + 1; i++){
+            flag.push(1)
+        }
+        for(let val0 of state[s1][1]){
+            let minimum = Infinity
+            let val = -1
+            for(let value of state[s1][1]){
+                if (flag[value] === -1){
+                    continue
+                }
+                let counter = 0
+/*
+                for neighbour in neighbours[s1]:
+                    if state[neighbour][0] is not None:
+                        continue
+                if counter < minimum:
+                    minimum = counter
+                    val = value
+                
+*/
+            }
+        }
+
+    }
 }
 /*
+def least_constraining_value(state):
     #################################################################
     # (Point: 15% of total score)                                   #
     # This function returns sorted values in ascending order        #
     # based on the no of constraints and return the list.           #
     #################################################################
-
-    indexes = []
-    flag = []
-    for i in range(len(state) + 1):
-        flag.append(1)
+    sorted_vals = state.copy()
     for s1 in state:
-        min = 9999999999
-        index = -1
-        for s2 in state:
-            if flag[s2] == -1 or state[s2][0] is not None:
-                continue
-            if len(state[s2][1]) < min:
-                min = len(state[s2][1])
-                index = s2
-            if len(state[s2][1]) == min:
-                index = s2
-        flag[index] = - 1
-        if index != -1:
-            indexes.append(index)
-    return indexes
+        if state[s1][0] is not None:
+            continue
+        new_values = []
+        flag = []
+        max = -1
+        for value in state[s1][1]:
+            if value > max:
+                max = value
+        for i in range(max + 1):
+            flag.append(1)
+
+        for val0 in state[s1][1]:
+            minimum = 9999999999
+            val = -1
+            for value in state[s1][1]:
+                if flag[value] == -1:
+                    continue
+                counter = 0
+
+                for neighbour in neighbours[s1]:
+                    if state[neighbour][0] is not None:
+                        continue
+                if counter < minimum:
+                    minimum = counter
+                    val = value
+            new_values.append(val)
+            flag[val] = -1
+        sorted_vals[s1][1].clear()
+        sorted_vals[s1][1] = new_values
+    return sorted_vals
 */
+function another_test_function( [...state] ){
+    console.log("From another_test_function() state=  ", state)
+    state[1] = [null, [1000,2000,3000]]
+}
+
 export function Solve({ oldState }) {
     old_state = oldState
     // const { graph, events } = state;
