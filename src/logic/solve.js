@@ -278,34 +278,72 @@ function backtrack(){
     }
     return res
 }
+function backtrack_search(state){
+    state = arc_consistency(state)
+    if(state === null){
+        return null
+    }
+    let indexes = minimum_remaining_variable(state)
+    state = least_constraining_value(state)
+    let new_state = state.slice()
+
+    let flag = false
+    for(let s = 0; s < new_state.length; s++){
+        if(new_state[s][0] === null){
+            flag = true
+            break
+        }
+    }
+    if(!flag){
+        return new_state
+    }
+    for(let value of new_state[indexes[0]][1]){
+        new_state[indexes[0]][0] = value
+        let result = backtrack_search(new_state)
+        if(result !== null){
+            return result
+        }
+        new_state = state.slice()
+    }
+    return null
+}
 /*
-    state = start_variables.copy()
-    res = backtrack_search(state)
-    while res is None:
-        colors = colors + 1
-        if colors > real_colors:
-            return None
-        res = backtrack_search(state)
-    return res
+    for value in new_state[indexes[0]][1]:
+        new_state[indexes[0]][0] = value
+        result = backtrack_search(new_state)
+        if result is not None:
+            return result
+        new_state = state.copy()
+    return None
 */
 
 /*
-def backtrack(filename, report=True):
-    global colors
-    fileReader(filename)
+def backtrack_search(state):
+    state = arc_consistency(state)
+    if state is None:
+        return None
+    indexes = minimum_remaining_variable(state)
+    state = least_constraining_value(state)
+    new_state = state.copy()
     #################################################################
-    # (Point: 35% of total score)                                   #
-    # This function returns a solution if there is a complete       #
-    # assignment or failure if there is not                         #
+    # (Point: 5% of total score)                                    #
+    #  Just for start of your backtrack                             #
     #################################################################
-    state = start_variables.copy()
-    res = backtrack_search(state)
-    while res is None:
-        colors = colors + 1
-        if colors > real_colors:
-            return None
-        res = backtrack_search(state)
-    return res
+    flag = False
+    for s in new_state:
+        if new_state[s][0] is None:
+            flag = True
+            break
+    if not flag:
+        return new_state
+
+    for value in new_state[indexes[0]][1]:
+        new_state[indexes[0]][0] = value
+        result = backtrack_search(new_state)
+        if result is not None:
+            return result
+        new_state = state.copy()
+    return None
 */
 function another_test_function( [...state] ){
     console.log("From another_test_function() state=  ", state)
