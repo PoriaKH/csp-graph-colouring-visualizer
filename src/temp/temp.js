@@ -1,5 +1,9 @@
 export function temp_func(){
     let a = [0, 1, 2, 3, 4]
+    let b = a.slice()
+    b[0] = -1
+    console.log("a= ", a)
+    console.log("b= ", b)
     // let b = [1, 2, 3]
     // let b = a[0]
     // for(let x of a[3]){
@@ -20,9 +24,9 @@ export function temp_func(){
     // console.log("a.length = ", a.length)
     // temp_func2(a)
     // console.log("a.length = ", a.length)
-    a.splice(0, 1)
-    console.log(a)
+    // a.splice(0, 1)
+    // console.log(a)
 }
-function temp_func2(arr){
-    arr.splice(1, 1)
-}
+// function temp_func2(arr){
+//     arr.splice(1, 1)
+// }

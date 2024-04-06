@@ -10,7 +10,12 @@ let colors = 1
 let real_colors = Infinity
 
 let isSolved = false
+const all_states = []
 
+
+// 
+//  null : represents -> null
+// 
 
 function set_start_variables(){
     start_variables = []
@@ -178,13 +183,27 @@ export function test_function(){
     let result = arc_consistency(variables)
     console.log("result = ", result)
 */
-
+/*
     start_variables =  [[null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]], [null, [1, 2, 3, 4]]]
     neighbours =  [[1, 2, 3, 4], [0, 2, 3, 5, 6], [0, 1, 4, 5, 6], [0, 1, 4, 5, 6], [0, 2, 3, 5, 6], [1, 2, 3, 4, 6], [1, 2, 3, 4, 5]]
     colors =  1
     // res =  {0: [1, [1, 2, 3, 4]], 1: [3, [1, 2, 3, 4]], 2: [4, [1, 2, 3, 4]], 3: [4, [1, 2, 3, 4]], 4: [3, [1, 2, 3, 4]], 5: [2, [1, 2, 3, 4]], 6: [1, [1, 2, 3, 4]]}
     let result = backtrack()
     console.log("result = ", result)
+*/
+    // start_variables =  {0: [None, [1, 2, 3, 4]], 1: [None, [1, 2, 3, 4]], 2: [None, [1, 2, 3, 4]], 3: [None, [1, 2, 3, 4]], 4: [None, [1, 2, 3, 4]], 5: [None, [1, 2, 3, 4]], 6: [None, [1, 2, 3, 4]], 7: [None, [1, 2, 3, 4]], 8: [None, [1, 2, 3, 4]], 9: [None, [1, 2, 3, 4]], 10: [None, [1, 2, 3, 4]], 11: [None, [1, 2, 3, 4]], 12: [None, [1, 2, 3, 4]], 13: [None, [1, 2, 3, 4]], 14: [None, [1, 2, 3, 4]], 15: [None, [1, 2, 3, 4]], 16: [None, [1, 2, 3, 4]], 17: [None, [1, 2, 3, 4]], 18: [None, [1, 2, 3, 4]], 19: [None, [1, 2, 3, 4]], 20: [None, [1, 2, 3, 4]], 21: [None, [1, 2, 3, 4]], 22: [None, [1, 2, 3, 4]], 23: [None, [1, 2, 3, 4]], 24: [None, [1, 2, 3, 4]], 25: [None, [1, 2, 3, 4]], 26: [None, [1, 2, 3, 4]], 27: [None, [1, 2, 3, 4]], 28: [None, [1, 2, 3, 4]], 29: [None, [1, 2, 3, 4]], 30: [None, [1, 2, 3, 4]], 31: [None, [1, 2, 3, 4]], 32: [None, [1, 2, 3, 4]], 33: [None, [1, 2, 3, 4]], 34: [None, [1, 2, 3, 4]], 35: [None, [1, 2, 3, 4]], 36: [None, [1, 2, 3, 4]], 37: [None, [1, 2, 3, 4]], 38: [None, [1, 2, 3, 4]], 39: [None, [1, 2, 3, 4]], 40: [None, [1, 2, 3, 4]], 41: [None, [1, 2, 3, 4]], 42: [None, [1, 2, 3, 4]], 43: [None, [1, 2, 3, 4]], 44: [None, [1, 2, 3, 4]], 45: [None, [1, 2, 3, 4]], 46: [None, [1, 2, 3, 4]], 47: [None, [1, 2, 3, 4]], 48: [None, [1, 2, 3, 4]], 49: [None, [1, 2, 3, 4]], 50: [None, [1, 2, 3, 4]], 51: [None, [1, 2, 3, 4]], 52: [None, [1, 2, 3, 4]], 53: [None, [1, 2, 3, 4]], 54: [None, [1, 2, 3, 4]], 55: [None, [1, 2, 3, 4]], 56: [None, [1, 2, 3, 4]], 57: [None, [1, 2, 3, 4]], 58: [None, [1, 2, 3, 4]], 59: [None, [1, 2, 3, 4]]}
+    let my_neighbours =  {0: [1, 2, 3], 1: [0, 5, 8], 2: [0, 58, 53], 3: [0, 59, 7], 4: [5, 6, 7], 5: [4, 1, 9], 6: [4, 14, 12], 7: [4, 19, 3], 8: [1, 52, 31], 9: [5, 16, 31], 10: [11, 12, 13], 11: [10, 15, 17], 12: [10, 6, 19], 13: [10, 20, 24], 14: [15, 6, 16], 15: [14, 11, 18], 16: [14, 27, 9], 17: [11, 20, 32], 18: [15, 27, 33], 19: [12, 26, 7], 20: [21, 13, 17], 21: [20, 22, 23], 22: [21, 34, 42], 23: [21, 45, 25], 24: [13, 25, 26], 25: [24, 54, 23], 26: [24, 56, 19], 27: [28, 16, 18], 28: [27, 29, 30], 29: [28, 37, 35], 30: [28, 40, 31], 31: [9, 8, 30], 32: [33, 17, 34], 33: [32, 18, 35], 34: [32, 22, 41], 35: [33, 29, 41], 36: [37, 38, 39], 37: [36, 29, 40], 38: [36, 43, 41], 39: [36, 46, 44], 40: [37, 47, 30], 41: [35, 34, 38], 42: [22, 43, 45], 43: [42, 38, 44], 44: [43, 49, 39], 45: [42, 50, 23], 46: [39, 47, 48], 47: [46, 52, 40], 48: [46, 51, 53], 49: [44, 50, 51], 50: [49, 55, 45], 51: [49, 48, 57], 52: [8, 47, 53], 53: [52, 2, 48], 54: [55, 25, 56], 55: [54, 50, 57], 56: [54, 26, 59], 57: [55, 58, 51], 58: [2, 57, 59], 59: [58, 56, 3]}
+    colors =  1
+    // res =  {0: [1, [1, 2, 3]], 1: [3, [1, 2, 3]], 2: [3, [1, 2, 3]], 3: [2, [1, 2, 3]], 4: [3, [1, 2, 3]], 5: [1, [1, 2, 3]], 6: [2, [1, 2, 3]], 7: [1, [1, 2, 3]], 8: [2, [1, 2, 3]], 9: [2, [1, 2, 3]], 10: [3, [1, 2, 3]], 11: [1, [1, 2, 3]], 12: [1, [1, 2, 3]], 13: [2, [1, 2, 3]], 14: [3, [1, 2, 3]], 15: [2, [1, 2, 3]], 16: [1, [1, 2, 3]], 17: [2, [1, 2, 3]], 18: [1, [1, 2, 3]], 19: [2, [1, 2, 3]], 20: [1, [1, 2, 3]], 21: [3, [1, 2, 3]], 22: [2, [1, 2, 3]], 23: [1, [1, 2, 3]], 24: [3, [1, 2, 3]], 25: [2, [1, 2, 3]], 26: [1, [1, 2, 3]], 27: [2, [1, 2, 3]], 28: [1, [1, 2, 3]], 29: [3, [1, 2, 3]], 30: [2, [1, 2, 3]], 31: [1, [1, 2, 3]], 32: [3, [1, 2, 3]], 33: [2, [1, 2, 3]], 34: [1, [1, 2, 3]], 35: [1, [1, 2, 3]], 36: [3, [1, 2, 3]], 37: [2, [1, 2, 3]], 38: [1, [1, 2, 3]], 39: [2, [1, 2, 3]], 40: [1, [1, 2, 3]], 41: [2, [1, 2, 3]], 42: [1, [1, 2, 3]], 43: [2, [1, 2, 3]], 44: [1, [1, 2, 3]], 45: [2, [1, 2, 3]], 46: [3, [1, 2, 3]], 47: [2, [1, 2, 3]], 48: [1, [1, 2, 3]], 49: [3, [1, 2, 3]], 50: [1, [1, 2, 3]], 51: [2, [1, 2, 3]], 52: [1, [1, 2, 3]], 53: [2, [1, 2, 3]], 54: [1, [1, 2, 3]], 55: [2, [1, 2, 3]], 56: [2, [1, 2, 3]], 57: [1, [1, 2, 3]], 58: [2, [1, 2, 3]], 59: [1, [1, 2, 3]]}
+    for(let i = 0; i < 60; i++){
+        start_variables.push([null, [1, 2, 3, 4]])
+    }
+    for(let j = 0; j < 60; j++){
+        console.log("neighbours[j] = ", neighbours[j])
+        neighbours.push(my_neighbours[j])
+    }
+    console.log(backtrack())
+
 }
 function minimum_remaining_variable( state ){
     let indexes = []
@@ -217,7 +236,8 @@ function minimum_remaining_variable( state ){
     
 }
 function least_constraining_value( state ){
-    let sorted_vals = state.slice()
+    // let sorted_vals = state.slice()
+    let sorted_vals = state.map(obj => ({...obj}));
     for(let s1 = 0; s1 < state.length; s1++){
         if(state[s1][0] !== null){
             continue
@@ -260,14 +280,16 @@ function least_constraining_value( state ){
     return sorted_vals
 }
 function arc_consistency(variables){
-    let new_variables = variables.slice()
+    // let new_variables = variables.slice()
+    let new_variables = variables.map(obj => ({...obj}));
     let to_append = []
     for(let i = 0; i < colors; i++){
         to_append.push(i + 1)
     }
     for(let s = 0; s < variables.length; s++){
         variables[s][1] = []
-        variables[s][1] = to_append.slice()
+        // variables[s][1] = to_append.slice()
+        variables[s][1] = to_append.map(obj => ({...obj}));
     }
     for(let s1 = 0; s1 < new_variables.length; s1++){
         if(new_variables[s1][0] === null){
@@ -374,37 +396,31 @@ function remove_inconsistent_values(arc, variables){
 
 // Function to call the backtracking search
 function backtrack(){
-    let state = start_variables.slice()
+    // let state = start_variables.slice()
+    let state = start_variables.map(obj => ({...obj}));
+
     let res = backtrack_search(state)
     while(res === null){
         colors = colors + 1
         set_start_variables()
-        state = start_variables.slice()
+        // state = start_variables.slice()
+        state = start_variables.map(obj => ({...obj}));
         res = backtrack_search(state)
-        for(let s1 = 0; res !== null && s1 < res.length; s1++ ){
-            let flag = false
-            for(let neighbour of neighbours[s1]){
-                if(res[s1][0] === res[neighbour][0]){
-                    flag = true
-                    break
-                }
-            }
-            if(flag){
-                res = null
-                break
-            }
-        }
     }
     return res
 }
 function backtrack_search([...state]){
+    const temp_state = state.map(obj => ({...obj}));
+    all_states.push(temp_state)
     state = arc_consistency(state)
     if(state === null){
         return null
     }
     let indexes = minimum_remaining_variable(state)
     state = least_constraining_value(state)
-    let new_state = state.slice()
+    // let new_state = state.slice()
+    let new_state = state.map(obj => ({...obj}));
+
     let flag = false
     for(let s = 0; s < new_state.length; s++){
         if(new_state[s][0] === null){
@@ -417,11 +433,14 @@ function backtrack_search([...state]){
     }
     for(let value of new_state[indexes[0]][1]){
         new_state[indexes[0]][0] = value
+        // all_states.push(new_state)
+        // update the graph
         let result = backtrack_search(new_state)
         if(result !== null){
             return result
         }
-        new_state = state.slice()
+        // new_state = state.slice()
+        new_state = state.map(obj => ({...obj}));
     }
     return null
 }
@@ -512,6 +531,13 @@ export function Solve({ oldState }) {
             console.log("in isSolved:\n")
             console.log("neighbours = ", neighbours, "\nstart_variables = ", start_variables)
             let result = backtrack()
+            console.log("all_states = ", all_states)
+            
+            // for(let i = 0; i < all_states.length; i++){
+            //     console.log("all_state[i]= ", all_states[i])
+            // }
+            console.log("all_state[1][0] = ", all_states[1][0][0])
+            // 
             console.log("result = ", result, "\ngraph = ", graph)
 
             let color_array = []

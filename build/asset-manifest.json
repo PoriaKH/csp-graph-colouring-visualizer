@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/csp-graph-colouring-visualizer/static/css/main.4746200f.css",
-    "main.js": "/csp-graph-colouring-visualizer/static/js/main.080677fb.js",
+    "main.js": "/csp-graph-colouring-visualizer/static/js/main.6d29c53b.js",
     "static/media/logo.svg": "/csp-graph-colouring-visualizer/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/csp-graph-colouring-visualizer/index.html",
     "main.4746200f.css.map": "/csp-graph-colouring-visualizer/static/css/main.4746200f.css.map",
-    "main.080677fb.js.map": "/csp-graph-colouring-visualizer/static/js/main.080677fb.js.map"
+    "main.6d29c53b.js.map": "/csp-graph-colouring-visualizer/static/js/main.6d29c53b.js.map"
   },
   "entrypoints": [
     "static/css/main.4746200f.css",
-    "static/js/main.080677fb.js"
+    "static/js/main.6d29c53b.js"
   ]
 }
