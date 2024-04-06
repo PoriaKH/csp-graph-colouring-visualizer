@@ -379,9 +379,9 @@ export function Solve({ oldState }) {
                     }
                 }, 400); 
               },[]);
-            return(
-                <p> colors is : {colors}</p>
-            )
+            // return(
+            //     <p> number of colors : {colors}</p>
+            // )
         
       }
       const { graph, events } = state;
