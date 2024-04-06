@@ -1,4 +1,5 @@
 # csp-graph-coloring-visualizer
+### Introduction
 In this project i tried to solve and visualize the famous constraint satisfaction graph coloring problem by using React and artificial intelligence.<br/>
 in the [visualizer](https://poriakh.github.io/csp-graph-colouring-visualizer/) you'll be able to create your own graph and visualize how graph is painted step by step when backtrack search is running on background.
 
