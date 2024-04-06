@@ -319,6 +319,7 @@ export function Solve({ oldState }) {
             const red = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
             const green = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
             const blue = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+            console.log("red = ", red, "\ngreen = ", green, "\nblue =", blue)
             return `#${red}${green}${blue}`;
           }
         const Recursive = () => {
@@ -377,7 +378,7 @@ export function Solve({ oldState }) {
                       state_number = state_number + 1
                     // 
                     }
-                }, 400); 
+                }, 500); 
               },[]);
             // return(
             //     <p> number of colors : {colors}</p>
