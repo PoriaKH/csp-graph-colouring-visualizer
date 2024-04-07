@@ -69,4 +69,22 @@
     .topnav input[type=number] {
       border: 1px solid #ccc;  
     }
+
+
+    .topnav .login-container .submit-button {
+      float: right;
+      padding: 10px 20px;
+      margin-top: 1.8px;
+      margin-bottom: 2px;
+      font-size: 15px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      outline: none;
+      color: #fff;
+      background-color: #04AA6D;
+      border: none;
+      border-radius: 10px;
+      margin-right: 2px;
+    }
 }

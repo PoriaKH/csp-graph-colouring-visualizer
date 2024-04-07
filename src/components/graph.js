@@ -138,6 +138,10 @@ export const Copied = () => {
             const name = event.target.name;
             const value = event.target.value;
             setEdge(values => ({...values, [name]: value}))
+//  && edge.node1 < state.counter && edge.node2 < state.counter
+            // console.log("edge.node1 = ", edge.node1)
+            // console.log("edge.node2 = ", edge.node2)
+            
           }
         const solve = () => {
             console.log("What about here")
@@ -145,6 +149,23 @@ export const Copied = () => {
             // Solve( state );
         }
       const { graph, events } = state;
+      // console.log("edge.node1 = \n",edge.node1, "edge.node2 = ", edge.node2)
+      //   // 
+      //   let btn = null
+      //   // const btn = document.getElementById("clk");
+      //   console.log("btn = ", btn)
+      //   if(edge.node1 >= 0 && edge.node2 >= 0 && btn !== null){
+      //     console.log("in")
+      //     // btn.disabled = false;
+      //     console.log("btn enabled")
+      //     // btn.class = "button button4"
+      //   }
+      //   else if(btn !== null){
+      //     // btn.disabled = true;
+      //     console.log("btn disabled")
+      //     // btn.class = "disabled button button4"
+      //   }
+        // 
         if (!isSolve) {
             return (
               <>
@@ -172,7 +193,8 @@ export const Copied = () => {
                             onChange={handleChangeEdge}
                             />
                             </label>
-                        <input type="submit" class="button button4" value = "Add Edge" />‍‍
+                        <input type="submit" class="button button4" value = "Add Edge" id="clk"/>‍‍
+                        {/* <button type="submit" class ="submit-button">Add Edge</button> */}
                     </form>
                     <div/>
                 {/* <p> this is a paragraf</p> */}
