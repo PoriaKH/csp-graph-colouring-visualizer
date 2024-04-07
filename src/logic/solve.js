@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Graph from 'react-vis-network-graph'
-import { options } from "../components/graph4";
+import { options } from "../components/graph";
 
 let old_state = {}
 let start_variables = []
