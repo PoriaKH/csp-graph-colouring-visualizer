@@ -1,18 +1,8 @@
-// import Graph from "react-graph-vis";
 import Graph from 'react-vis-network-graph'
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import { edges, nodes } from './data';
 import { Solve  } from '../logic/solve';
 
-// const options = {
-//   layout: {
-//     hierarchical: false
-//   },
-//   edges: {
-//     color: "#000000"
-//   }
-// };
+;
 export var options = {
 
     physics: {
@@ -157,36 +147,40 @@ export const Copied = () => {
       const { graph, events } = state;
         if (!isSolve) {
             return (
-                <>
-                    <div className='App'>
-                    <>
+              <>
+                    <div class="topnav">
+                    <button type="button" class="button button2" onClick={createNode}> Add Node </button>
+                    <button type="button" class="button button3" onClick={solve}> Solve </button>
+                    <div class="login-container">
                     {/* <h2>Add Edge !</h2> */}
                     <form onSubmit={addEdge}>
-                        <label>Node 1:
+                        <label>
                         <input 
                             type="number" 
                             name="node1"
+                            placeholder="node 1"
                             value={edge.node1 || ""}
                             onChange={handleChangeEdge}
                         />
                         </label>
-                        <label>Node 2:
+                        <label>
                             <input 
                             type="number" 
                             name="node2" 
+                            placeholder="node 2"
                             value={edge.node2 || ""} 
                             onChange={handleChangeEdge}
                             />
                             </label>
-                        <input type="submit" value = "Add-Edge" />‍‍
+                        <input type="submit" class="button button4" value = "Add Edge" />‍‍
                     </form>
-                    </>
+                    <div/>
                 {/* <p> this is a paragraf</p> */}
                 {/* <p> num of nodes is {nodeCounter}</p> */}
-                <button type="button" onClick={createNode}> Add Node </button>
-                <p></p>
-                <button type="button" onClick={solve}> Solve </button>
+                {/* <button type="button" class="button" onClick={createNode}> Add Node </button> */}
+                {/* <button type="button" class="button" onClick={solve}> Solve </button> */}
                     </div>
+                  </div>
                     <div>
                         <Graph 
                         graph={graph}
@@ -194,7 +188,7 @@ export const Copied = () => {
                         events={events} 
                         style={{ height: "640px" }} />
                     </div>
-                </>
+                    </>
             );
         }
         else{

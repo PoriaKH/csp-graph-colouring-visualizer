@@ -1,0 +1,159 @@
+.App {
+  /* text-align: center; */
+  color: rgb(0, 0, 0);
+}
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* .button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+} */
+
+/* .button2 {
+  background-color: #04AA6D; 
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.00s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: rgb(104, 176, 10); 
+  color: black; 
+  border: 2px solid #04AA6D;
+}
+
+.button1:hover {
+  background-color: #04AA6D;
+  color: white;
+}  */
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 1.8px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 10px;
+  /* box-shadow: 0 9px #999; */
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  /* box-shadow: 0 5px #666; */
+  transform: translateY(4px);
+}
+
+
+.button2 {
+  float: left;
+  margin-left: 2px;
+}
+.button2:hover {
+  background-color: green;
+}
+
+.button3 {
+  position: absolute;
+  margin-top: 1.8px;
+  right: 46%;
+  padding: 10px 90px;
+  font-size: 15px;
+  border-radius: 7px;
+  font-size: 15px; 
+}
+.button3:hover {
+  background-color: green;
+}
+
+.button4 {
+  float: right;
+  margin-right: 2px;
+}
+.button4:hover {
+  background-color: green;
+}
+
+/* .button1:hover {
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+} */
+body{
+  /* background-color: #202124; */
+  background-color: #5f5c5c
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.rowC{
+  align-items: center;
+  text-align: center;
+  display:flex; 
+  /* flex-direction:row; */
+}
