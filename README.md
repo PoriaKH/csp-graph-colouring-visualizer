@@ -6,6 +6,7 @@ in the [visualizer](https://poriakh.github.io/csp-graph-colouring-visualizer/) y
 ### Usage
 Use `Add Node` to add node to your graph.(you can also double click on the screen to create node).<br/>
 `Add Edge` to add edge to your graph.<br/>
+you can `zoom-in` or `zoom-out`, you're also able to move the whole graph for better view.
 
 after creating your graph click on `Solve` to see the magic.<br/><br/>
 hope you enjoy :)<br/>
