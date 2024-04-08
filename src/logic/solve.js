@@ -14,7 +14,6 @@ const all_states = []
 let state_number = 0
 
 let color_array = []
-let temp = 0
 // 
 //  null : represents -> null
 // 
@@ -319,7 +318,6 @@ export function Solve({ oldState }) {
             const red = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
             const green = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
             const blue = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-            console.log("red = ", red, "\ngreen = ", green, "\nblue =", blue)
             return `#${red}${green}${blue}`;
           }
         const Recursive = () => {
@@ -329,11 +327,6 @@ export function Solve({ oldState }) {
             set_neighbours();
             
             let result = backtrack()
-            console.log("all_states = ", all_states)
-            
-             
-            console.log("result = ", result, "\ngraph = ", graph)
-
             for(let i = 0; i < colors; i++){
                 color_array.push(randomColor())
             }
@@ -342,19 +335,12 @@ export function Solve({ oldState }) {
         }
             useEffect(() => {
                 setTimeout(() => {
-                    console.log("Here")
                     if(state_number < all_states.length){
-                    console.log("heyyss");
                     let new_graph = {}
                     const new_nodes = graph.nodes.map(obj => ({...obj}));
-                    console.log("graph = ", graph)
-                    console.log("graph.nodes = ", graph.nodes)
-                    console.log("new_nodes = ", new_nodes)
 
                     for(let node of new_nodes){
-                        console.log("node = ", node)
                         if(all_states[state_number][node.id][0] !== null){
-                            console.log("all_states[state_number][node.id][0] - 1 = ", all_states[state_number][node.id][0] - 1)
                             node.color = color_array[all_states[state_number][node.id][0] - 1]
                         }
                         else{
@@ -380,17 +366,10 @@ export function Solve({ oldState }) {
                     }
                 }, 500); 
               },[]);
-            // return(
-            //     <p> number of colors : {colors}</p>
-            // )
-        
       }
       const { graph, events } = state;
     return(
         <>
-            {/* <div className="App">
-            <h2> We Reached else</h2>
-            </div> */}  
             <div>
                 <Recursive />
                         <Graph 

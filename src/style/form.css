@@ -71,7 +71,7 @@
     }
 
 
-    .topnav .login-container .submit-button {
+    .topnav .login-container{
       float: right;
       padding: 10px 20px;
       margin-top: 1.8px;

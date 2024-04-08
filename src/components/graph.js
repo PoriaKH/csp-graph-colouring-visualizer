@@ -31,7 +31,6 @@ export var options = {
             type: "arrow"
             }
         },
-        // arrowStrikethrough: false,
         color: "yellow"
     },
     shadow: true,
@@ -64,13 +63,11 @@ export const Copied = () => {
           return {
             graph: {
               nodes: [
-                ...nodes,
-                // { id, label: `Node ${id}`, color, x, y , shape: "circle"}
+                ...nodes,                
                 { id, label: `Node ${id}`, x, y , shape: "circle"}
               ],
               edges: [
-                ...edges,
-                //{ from, to: id }
+                ...edges,                
               ]
             },
             counter: id + 1,
@@ -98,10 +95,6 @@ export const Copied = () => {
         },
         events: {
           select: ({ nodes, edges }) => {
-            console.log("Selected nodes:");
-            console.log(nodes);
-            console.log("Selected edges:");
-            console.log(edges);
             // alert("Selected node: " + nodes);
           },
           doubleClick: ({ pointer: { canvas } }) => {
@@ -112,24 +105,39 @@ export const Copied = () => {
 
       const addEdge = (event) => {
             event.preventDefault();
+            if(!(edge.node1 === null || edge.node2 === null || edge.node1 === "" || edge.node2 === "" || edge.node1 === undefined || edge.node2 === undefined || parseInt(edge.node1) < 0 || parseInt(edge.node2) < 0 || parseInt(edge.node1) >= state.counter || parseInt(edge.node2) >= state.counter || parseInt(edge.node1) === parseInt(edge.node2))){
+              let exist_flag = false
+              for(let e of state.graph.edges){
+                if((e.from === parseInt(edge.node1) && e.to === parseInt(edge.node2)) || (e.from === parseInt(edge.node2) && e.to === parseInt(edge.node1))){
+                  // edge has been already added
+                  exist_flag = true
+                  break
+                }
+              }
+              if (!exist_flag){
             setState(({ graph: { nodes, edges }, counter, ...rest }) => {
-                console.log("Here")
                 return {
                     graph: {
                       nodes: [
                         ...nodes,
-                        // { id, label: `Node ${id}`, color, x, y , shape: "circle"}
                       ],
                       edges: [
                         ...edges,
-                        {from: edge.node1, to: edge.node2},
+                        {from: parseInt(edge.node1), to: parseInt(edge.node2)},
                       ]
                     },
                     counter: counter,
                     ...rest
                   }
             });
+            setEdge({
+              node1: "",
+              node2: ""
+            })
           }
+        }
+      }
+      
           const [edge, setEdge] = useState({
             node1: "",
             node2: ""
@@ -138,34 +146,11 @@ export const Copied = () => {
             const name = event.target.name;
             const value = event.target.value;
             setEdge(values => ({...values, [name]: value}))
-//  && edge.node1 < state.counter && edge.node2 < state.counter
-            // console.log("edge.node1 = ", edge.node1)
-            // console.log("edge.node2 = ", edge.node2)
-            
           }
-        const solve = () => {
-            console.log("What about here")
-            setIsSolve(true)
-            // Solve( state );
+        const solve = () => {            
+            setIsSolve(true)            
         }
       const { graph, events } = state;
-      // console.log("edge.node1 = \n",edge.node1, "edge.node2 = ", edge.node2)
-      //   // 
-      //   let btn = null
-      //   // const btn = document.getElementById("clk");
-      //   console.log("btn = ", btn)
-      //   if(edge.node1 >= 0 && edge.node2 >= 0 && btn !== null){
-      //     console.log("in")
-      //     // btn.disabled = false;
-      //     console.log("btn enabled")
-      //     // btn.class = "button button4"
-      //   }
-      //   else if(btn !== null){
-      //     // btn.disabled = true;
-      //     console.log("btn disabled")
-      //     // btn.class = "disabled button button4"
-      //   }
-        // 
         if (!isSolve) {
             return (
               <>
@@ -173,7 +158,6 @@ export const Copied = () => {
                     <button type="button" class="button button2" onClick={createNode}> Add Node </button>
                     <button type="button" class="button button3" onClick={solve}> Solve </button>
                     <div class="login-container">
-                    {/* <h2>Add Edge !</h2> */}
                     <form onSubmit={addEdge}>
                         <label>
                         <input 
@@ -194,18 +178,13 @@ export const Copied = () => {
                             />
                             </label>
                         <input type="submit" class="button button4" value = "Add Edge" id="clk"/>‍‍
-                        {/* <button type="submit" class ="submit-button">Add Edge</button> */}
                     </form>
                     <div/>
-                {/* <p> this is a paragraf</p> */}
-                {/* <p> num of nodes is {nodeCounter}</p> */}
-                {/* <button type="button" class="button" onClick={createNode}> Add Node </button> */}
-                {/* <button type="button" class="button" onClick={solve}> Solve </button> */}
                     </div>
                   </div>
                     <div>
                         <Graph 
-                        graph={graph}
+                        graph={state.graph}
                         options={options} 
                         events={events} 
                         style={{ height: "640px" }} />
@@ -216,16 +195,6 @@ export const Copied = () => {
         else{
             return(
                 <Solve oldState={state}/>
-                // <>
-                // <div className="App">
-                //     <h2> We Reached else</h2>
-                // </div>
-                // </>
             )
         }
 }
-
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById("root")
-// );

@@ -1,5 +1,4 @@
 .App {
-  /* text-align: center; */
   color: rgb(0, 0, 0);
 }
 .dropbtn {
@@ -45,43 +44,6 @@
     transform: rotate(360deg);
   }
 }
-/* .button {
-  background-color: #04AA6D;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-} */
-
-/* .button2 {
-  background-color: #04AA6D; 
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.00s;
-  cursor: pointer;
-}
-
-.button1 {
-  background-color: rgb(104, 176, 10); 
-  color: black; 
-  border: 2px solid #04AA6D;
-}
-
-.button1:hover {
-  background-color: #04AA6D;
-  color: white;
-}  */
 
 .button {
   display: inline-block;
@@ -97,20 +59,19 @@
   background-color: #04AA6D;
   border: none;
   border-radius: 10px;
-  /* box-shadow: 0 9px #999; */
 }
 
 .button:hover {background-color: #3e8e41}
 
 .button:active {
   background-color: #3e8e41;
-  /* box-shadow: 0 5px #666; */
   transform: translateY(4px);
 }
 
 .disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  
 }
 
 
@@ -143,11 +104,7 @@
   background-color: green;
 }
 
-/* .button1:hover {
-  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
-} */
 body{
-  /* background-color: #202124; */
   background-color: #5f5c5c
 }
 
@@ -161,5 +118,4 @@ body{
   align-items: center;
   text-align: center;
   display:flex; 
-  /* flex-direction:row; */
 }
