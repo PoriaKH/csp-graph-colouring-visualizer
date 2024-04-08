@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/csp-graph-colouring-visualizer/static/css/main.3b124aa5.css",
-    "main.js": "/csp-graph-colouring-visualizer/static/js/main.aacc1df1.js",
+    "main.css": "/csp-graph-colouring-visualizer/static/css/main.a54cfa19.css",
+    "main.js": "/csp-graph-colouring-visualizer/static/js/main.efd4091e.js",
     "index.html": "/csp-graph-colouring-visualizer/index.html",
-    "main.3b124aa5.css.map": "/csp-graph-colouring-visualizer/static/css/main.3b124aa5.css.map",
-    "main.aacc1df1.js.map": "/csp-graph-colouring-visualizer/static/js/main.aacc1df1.js.map"
+    "main.a54cfa19.css.map": "/csp-graph-colouring-visualizer/static/css/main.a54cfa19.css.map",
+    "main.efd4091e.js.map": "/csp-graph-colouring-visualizer/static/js/main.efd4091e.js.map"
   },
   "entrypoints": [
-    "static/css/main.3b124aa5.css",
-    "static/js/main.aacc1df1.js"
+    "static/css/main.a54cfa19.css",
+    "static/js/main.efd4091e.js"
   ]
 }
