@@ -154,10 +154,10 @@ export const Copied = () => {
         if (!isSolve) {
             return (
               <>
-                    <div class="topnav">
-                    <button type="button" class="button button2" onClick={createNode}> Add Node </button>
-                    <button type="button" class="button button3" onClick={solve}> Solve </button>
-                    <div class="login-container">
+                    <div className="topnav">
+                    <button type="button" className="button button2" onClick={createNode}> Add Node </button>
+                    <button type="button" className="button button3" onClick={solve}> Solve </button>
+                    <div className="login-container">
                     <form onSubmit={addEdge}>
                         <label>
                         <input 
@@ -177,7 +177,7 @@ export const Copied = () => {
                             onChange={handleChangeEdge}
                             />
                             </label>
-                        <input type="submit" class="button button4" value = "Add Edge" id="clk"/>‍‍
+                        <input type="submit" className="button button4" value = "Add Edge" id="clk"/>‍‍
                     </form>
                     <div/>
                     </div>

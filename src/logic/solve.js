@@ -18,6 +18,7 @@ let color_array = []
 //  null : represents -> null
 // 
 
+// initialize the first state of graph
 function set_start_variables(){
     start_variables = []
     for(let node of old_state.graph.nodes){
@@ -29,6 +30,7 @@ function set_start_variables(){
     }
 }
 
+// initialize neighbours of each node
 function set_neighbours(){
     for (let node of old_state.graph.nodes){
         neighbours.push([])
@@ -42,6 +44,10 @@ function set_neighbours(){
         }
     }
 }
+
+// Function to find the minimum remaining variable to be assigned.
+// This function returns sorted values in ascending order
+// based on the no of constraints and return the list. 
 function minimum_remaining_variable( state ){
     let indexes = []
     let flag = []
@@ -72,8 +78,11 @@ function minimum_remaining_variable( state ){
     return indexes
     
 }
+
+// Function to find the least constraining value.
+// This function returns sorted values in ascending order
+// based on the no of constraints and return the list.
 function least_constraining_value( state ){
-    // let sorted_vals = state.slice()
     let sorted_vals = state.map(obj => ({...obj}));
     for(let s1 = 0; s1 < state.length; s1++){
         if(state[s1][0] !== null){
@@ -116,8 +125,10 @@ function least_constraining_value( state ){
     }
     return sorted_vals
 }
+
+// Function to ensure arc consistency.
+// This function returns variables with consistent values.  
 function arc_consistency(variables){
-    // let new_variables = variables.slice()
     let new_variables = variables.map(obj => ({...obj}));
     let to_append = []
     for(let i = 0; i < colors; i++){
@@ -125,7 +136,6 @@ function arc_consistency(variables){
     }
     for(let s = 0; s < variables.length; s++){
         variables[s][1] = []
-        // variables[s][1] = to_append.slice()
         variables[s][1] = to_append.map(obj => ({...obj}));
     }
     for(let s1 = 0; s1 < new_variables.length; s1++){
@@ -204,6 +214,8 @@ function arc_consistency(variables){
     }
     return new_variables
 }
+
+// Function to remove the inconsistent values in an arc.
 function remove_inconsistent_values(arc, variables){
     for(let value1 of variables[arc[0]][1]){
         let flag = false
@@ -232,20 +244,21 @@ function remove_inconsistent_values(arc, variables){
 }
 
 // Function to call the backtracking search
+// This function returns a solution with minimum number of colors
 function backtrack(){
-    // let state = start_variables.slice()
     let state = start_variables.map(obj => ({...obj}));
 
     let res = backtrack_search(state)
     while(res === null){
         colors = colors + 1
         set_start_variables()
-        // state = start_variables.slice()
         state = start_variables.map(obj => ({...obj}));
         res = backtrack_search(state)
     }
     return res
 }
+
+// Recursive function that performs backtracking search based on the heuristics.
 function backtrack_search([...state]){
     const temp_state = state.map(obj => ({...obj}));
     all_states.push(temp_state)
@@ -256,7 +269,6 @@ function backtrack_search([...state]){
     }
     let indexes = minimum_remaining_variable(state)
     state = least_constraining_value(state)
-    // let new_state = state.slice()
     let new_state = state.map(obj => ({...obj}));
 
     let flag = false
@@ -275,7 +287,6 @@ function backtrack_search([...state]){
         if(result !== null){
             return result
         }
-        // new_state = state.slice()
         new_state = state.map(obj => ({...obj}));
     }
     return null
@@ -382,7 +393,9 @@ export function Solve({ oldState }) {
     )
 }
 
-export function test_function(){    // this function helps us to test and debug each present function individually
+
+// this function was useful to test and debug each present function individually
+export function test_function(){
     /*
         //  minimum_remaining_variable test //
     
