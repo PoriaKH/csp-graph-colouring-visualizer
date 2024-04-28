@@ -323,9 +323,39 @@ export function Solve({ oldState }) {
       }
         const [showDelayedText, setShowDelayedText] = useState(true);
         function randomColor() {
-            const red = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-            const green = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-            const blue = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+            let red;
+            let green;
+            let blue;
+            let flag = true
+            while(flag){
+                red = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+                green = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+                blue = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+                console.log(parseInt(blue, 16))
+                if(color_array.length == 0){
+                    break
+                }
+
+                let counter = 0
+                while(counter < color_array.length){
+                    const red_prime = color_array[counter].substring(1, 3);
+                    const green_prime = color_array[counter].substring(3, 5);
+                    const blue_prime = color_array[counter].substring(5, 7);
+                    const int_val_red = parseInt(red, 16) - parseInt(red_prime, 16);
+                    const int_val_blue = parseInt(blue, 16) - parseInt(blue_prime, 16);
+                    const int_val_green = parseInt(green, 16) - parseInt(green_prime, 16);
+                    let distance = Math.sqrt((int_val_red * int_val_red) + (int_val_blue * int_val_blue) + (int_val_green * int_val_green));
+                    let percentage = distance / Math.sqrt((255 * 255) + (255 * 255) + (255 * 255));
+                    if(percentage <= 0.23){
+                        // if two colors look the same, change them.
+                        break
+                    }
+                    else if(counter == color_array.length - 1){
+                        flag = false
+                    }
+                    counter++
+                }
+            }
             return `#${red}${green}${blue}`;
           }
         const Recursive = () => {
