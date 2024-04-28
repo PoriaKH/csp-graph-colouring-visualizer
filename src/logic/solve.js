@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Graph from 'react-vis-network-graph'
 import { options } from "../components/graph";
+// delay time, set lower to increase solving speed
+const delay = 500
 
 let old_state = {}
 let start_variables = []
@@ -331,7 +333,6 @@ export function Solve({ oldState }) {
                 red = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
                 green = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
                 blue = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
-                console.log(parseInt(blue, 16))
                 if(color_array.length == 0){
                     break
                 }
@@ -346,7 +347,7 @@ export function Solve({ oldState }) {
                     const int_val_green = parseInt(green, 16) - parseInt(green_prime, 16);
                     let distance = Math.sqrt((int_val_red * int_val_red) + (int_val_blue * int_val_blue) + (int_val_green * int_val_green));
                     let percentage = distance / Math.sqrt((255 * 255) + (255 * 255) + (255 * 255));
-                    if(percentage <= 0.23){
+                    if(percentage <= 0.3){
                         // if two colors look the same, change them.
                         break
                     }
@@ -402,7 +403,7 @@ export function Solve({ oldState }) {
                       state_number = state_number + 1
                     // 
                     }
-                }, 500); 
+                }, delay); 
               },[]);
       }
       const { graph, events } = state;
