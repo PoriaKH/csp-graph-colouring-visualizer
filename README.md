@@ -1,7 +1,7 @@
 # csp-graph-coloring-visualizer
 ### Introduction
 In this project i solved and visualized the famous constraint satisfaction graph coloring problem by using React and Artificial Intelligence.<br/>
-in the [visualizer](https://poriakh.github.io/csp-graph-colouring-visualizer/) you'll be able to create your own graph and visualize how graph is painted step by step when backtrack search is running on background.
+In the [visualizer](https://poriakh.github.io/csp-graph-colouring-visualizer/) you'll be able to create your own graph and visualize how graph is painted step by step when backtrack search is running on background.
 
 ### Usage
 Use `Add Node` to add node to your graph.(you can also double click on the screen to create node).<br/>
